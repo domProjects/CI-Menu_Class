@@ -8,33 +8,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<meta charset="utf-8">
 		<title>domProjects &bull; CI-Menu_Class</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous">
 		<style>
+			html {
+				position: relative;
+				min-height: 100%;
+			}
 			body {
-				padding-top: 5rem;
+				padding-top: 3.5rem;
+				margin-bottom: 4.5rem;
+			}
+			.footer {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				height: 3.5rem;
+				line-height: 3.5rem;
 			}
 		</style>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-			<a class="navbar-brand" href="#">CI-Menu_Class</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+		<header>
+			<nav class="navbar navbar-dark bg-dark fixed-top">
+				<div class="container">
+					<a class="navbar-brand" href="./">domProjects</a>
+				</div>
+			</nav>
+		</header>
 
-			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-
-<?php //echo $menu_bootstrap; ?>
-
+		<main role="main">
+			<div class="jumbotron">
+				<div class="container">
+					<h1 class="display-3">CI-Menu_Class</h1>
+				</div>
 			</div>
-		</nav>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
 
 <?php echo $menu; ?>
 
-		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo (ENVIRONMENT === 'development') ? 'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+					</div>
+				</div>
+			</div>
+		</main>
 
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<footer class="footer navbar navbar-light bg-light">
+			<div class="container">
+				<span>Page rendered in <strong>{elapsed_time}</strong> seconds. CodeIgniter Version <strong><?php echo CI_VERSION; ?></strong></span>
+			</div>
+		</footer>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha256-uz0BcnPtSHZ02XZthAHPRYIoWWrcwMOmAk9ErnFQkNs=" crossorigin="anonymous"></script>
 	</body>
 </html>

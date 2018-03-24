@@ -7,10 +7,7 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->library('menu');
 
-		$this->load->database();
-
 		$data['menu'] = $this->menu->generate();
-		$data['menu_bootstrap'] = $this->menu->generate();
 
 		$this->load->view('welcome_message', $data);
 	}

@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2013 - 2018, domProjects (https://domprojects.com)
  * @license   http://opensource.org/licenses/MIT	MIT License
  * @link      https://domprojects.com
- * @since     Version 1.0.0
+ * @since     Version 1.0.2
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -61,11 +61,14 @@ class Menu
 	/**
 	 * Generate the menu
 	 *
-	 * @param	mixed	$sidebar_menu_data
+	 * @param	mixed	$menu_data
 	 * @return	string
 	 */
 	public function generate()
 	{
+		// Load url function
+		$this->CI->load->helper('url');
+
 		// Compile and validate the template date
 		$this->_compile_template();
 
@@ -108,6 +111,8 @@ class Menu
 	{
 		$i = 0;
 
+		$this->CI->load->database();
+
 		$query = $this->CI->db->get_where('categories', array('parent_id' => $id));
 		$this->CI->db->order_by('order', 'ASC');
 		$result = $query->result();
@@ -141,15 +146,16 @@ class Menu
 			foreach($args as $key)
 			{
 				$out .= $this->template['menu_item_open'];
-				$out .= '<a href="' . site_url($key->url) . '">' . $key->name . '</a>';
-				$out .= $this->template['menu_item_close'] . $this->newline;
+				$out .= anchor(site_url($key->url), $key->name);
 
 				if ( ! empty($key->sub))
 				{
-					$out .= '<ul>' . $this->newline;
+					$out .= $this->newline . $this->template['menu_open'] . $this->newline;
 					$out .= $this->_fetch_menu($key->sub);
-					$out .= '</ul>' . $this->newline;
+					$out .= $this->template['menu_close'] . $this->newline;
 				}
+
+				$out .= $this->template['menu_item_close'] . $this->newline;
 			}
 
 			return $out;
