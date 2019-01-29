@@ -45,8 +45,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
-						<?php echo $menu; ?>
+					<div class="col-md-6">
+						<?php echo $menu_1; ?>
+					</div>
+					<div class="col-md-6">
+						<?php echo $menu_2; ?>
 					</div>
 				</div>
 			</div>

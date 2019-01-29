@@ -72,11 +72,10 @@ class Menu
 		// Compile and validate the template date
 		$this->_compile_template();
 
-		// Build the menu!
-
-		$out  = $this->template['menu_open'] . $this->newline;
+		// Build the menu
+		$out  = $this->template['menu_open'].$this->newline;
 		$out .= $this->_fetch_menu($this->_get_categories());
-		$out .= $this->template['menu_close'] . $this->newline;
+		$out .= $this->template['menu_close'].$this->newline;
 
 		return $out;
 	}
@@ -146,20 +145,36 @@ class Menu
 			foreach($args as $key)
 			{
 				$out .= $this->template['menu_item_open'];
-				$out .= anchor(site_url($key->url), $key->name);
+				$out .= anchor(site_url($key->url), $key->name, $this->template['menu_anchor_attributes']);
 
 				if ( ! empty($key->sub))
 				{
-					$out .= $this->newline . $this->template['menu_open'] . $this->newline;
+					$out .= $this->newline.$this->template['menu_sub_open'].$this->newline;
 					$out .= $this->_fetch_menu($key->sub);
-					$out .= $this->template['menu_close'] . $this->newline;
+					$out .= $this->template['menu_sub_close'].$this->newline;
 				}
 
-				$out .= $this->template['menu_item_close'] . $this->newline;
+				$out .= $this->template['menu_item_close'].$this->newline;
 			}
+
+			// Clear menu class properties before generating the menu
+			$this->clear();
 
 			return $out;
 		}
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Clears the menu arrays.  Useful if multiple menu are being generated
+	 *
+	 * @return	CI_Menu
+	 */
+	public function clear()
+	{
+		$this->args = array();
+		return $this;
 	}
 
 	// --------------------------------------------------------------------
@@ -179,7 +194,7 @@ class Menu
 
 		$this->temp = $this->_default_template();
 
-		foreach (array('menu_open', 'menu_close', 'menu_item_open', 'menu_item_close') as $val)
+		foreach (array('menu_open', 'menu_close', 'menu_sub_open', 'menu_sub_close', 'menu_item_open', 'menu_item_close', 'menu_anchor_attributes') as $val)
 		{
 			if ( ! isset($this->template[$val]))
 			{
@@ -198,10 +213,13 @@ class Menu
 	protected function _default_template()
 	{
 		return array(
-			'menu_open'       => '<ul>',
-			'menu_close'      => '</ul>',
-			'menu_item_open'  => '<li>',
-			'menu_item_close' => '</li>'
+			'menu_open' => '<ul>',
+			'menu_close' => '</ul>',
+			'menu_sub_open' => '<ul>',
+			'menu_sub_close' => '</ul>',
+			'menu_item_open' => '<li>',
+			'menu_item_close' => '</li>',
+			'menu_anchor_attributes' => ''
 		);
 	}
 }
