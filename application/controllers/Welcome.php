@@ -25,6 +25,20 @@ class Welcome extends CI_Controller {
 
 		$data['menu_2'] = $this->menu->generate();
 
+		// With metisMenu
+		$template_3 = array(
+			'menu_open' => '<ul id="metismenu" class="metismenu">',
+			'menu_close' => '</ul>',
+			'menu_sub_open' => '<ul>',
+			'menu_sub_close' => '</ul>',
+			'menu_item_open' => '<li>',
+			'menu_item_close' => '</li>',
+			'menu_anchor_attributes' => ''
+		);
+		$this->menu->set_template($template_3);
+
+		$data['menu_3'] = $this->menu->generate();
+
 		// Load page
 		$this->load->view('welcome_message', $data);
 	}
